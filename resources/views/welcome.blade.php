@@ -3,9 +3,7 @@
 @section('content')
     <body class="antialiased">
         <div id='app'>
-            <example-component>form1</example-component>
+            <persona-component></persona-component>
         </div>
-
-        <script src={{ asset("js/app.js") }}></script>
     </body>
 @endsection

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\personaController;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,16 +23,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/usuario', function () {
-    return 'Aqui podemos registrar usuarios';
-})->name('usuario');
+Route::apiResource('persona', personaController::class);
 
-Route::get('/persona/{nombre}', [personaController::class, 'show'])->name('persona');
-
-Route::post('/persona', function () {
-    return 'Aqui podemos registrar una persona';
-})->name('persona');
-
-Route::get('/consulta', function () {
-    return 'Aqui podemos consultar una persona';
-});
+//Route::get('/persona/{nombre}', [personaController::class, 'show'])->name('unapersona');

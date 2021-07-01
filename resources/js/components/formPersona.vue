@@ -1,0 +1,93 @@
+<template>
+    <div class="row">
+            <!-- Button open modal -->
+            <div class="text-right">
+                <label for="modalp">Registrar nueva perosna persona</label>
+                <button type="button" id="modalp" class="btn btn-primary" data-toggle="modal" data-target="#personaModal"> Registrar </button>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="personaModal" tabindex="-1" aria-labelledby="personaModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="personaModalLabel">Registrar perosna</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form class="col-md-10" action="" v-on:submit.prevent="createPersona()">
+                    <div class="modal-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputName">Nombre completo</label>
+                                    <input type="text" class="form-control" v-model="inputName" placeholder="Nombre completo" required="true">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="inputCui">CUI</label>
+                                    <input type="numer" class="form-control" v-model="inputCui" placeholder="Ingrese su CUI" minlegth="13" maxlength="13" required="true">
+                                    
+                                </div>
+                                
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAddress">Dirección</label>
+                                <input type="text" class="form-control" v-model="inputAddress" placeholder="Solola, Solola" required="true">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                <label for="inputDate">Fecha nacimiento</label>
+                                <input type="date" class="form-control" v-model="inputDate" required="true">
+                                </div>
+                                <div class="form-group col-md-6">
+                                <label for="inputCel">Celular</label>
+                                <input type="number" class="form-control" v-model="inputCel" placeholder="12549875" minlegth="8" maxlength="8" required="true">
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Registrar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+</template>
+
+<script>
+export default {
+    data(){
+            return{
+                inputName: "",
+                inputCui: "",
+                inputDate: "",
+                inputCel: "",
+                inputAddress: ""
+            }
+        },
+        methods:{
+            createPersona(){
+                const params ={
+                    cui: this.inputCui,
+                    name: this.inputName,
+                    address: this.inputAddress,
+                    date: this.inputDate,
+                    cel: this.inputCel
+                }
+                axios.post('persona', params)
+                .then((response) => 
+                this.inputName = '',
+                this.inputCui = '',
+                this.inputDate = '',
+                this.inputAddress = '',
+                this.inputCel = '',
+                $('#personaModal').modal('hide'))
+                .catch(function(error) {
+                    console.log(error);
+                });
+            }
+        }
+}
+</script>

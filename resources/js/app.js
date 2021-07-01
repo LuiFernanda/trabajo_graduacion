@@ -21,7 +21,9 @@ window.Vue = require('vue').default;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('form-component', require('./components/formPersona.vue').default);
+Vue.component('show-component', require('./components/showPersona.vue').default);
+Vue.component('persona-component', require('./components/PersonaComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -31,37 +33,4 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
-    created: function(){
-        
-    },
-    data:{
-        persona: [],
-        nombre: "",
-        cui: "",
-        addres: "",
-        nacimiento: "",
-        tel: "",
-        errors: []
-    },
-    methods:{
-        createPersona: function(){
-            var url = "persona";
-            axios.post(url,{
-                nombre: this.inputName,
-                cui: this.inputCui,
-                addres: this.inputAddress,
-                nacimiento: this.inputDate,
-                tel: this.inputCel
-            }).then(response =>{
-                console.log("correcto");
-                this.inputName = "";
-                this.inputCui = "";
-                this.inputAddress = "";
-                this.inputDate = "";
-                this.inputCel = "";
-            }).catch(error =>{
-                this.errors = error.response.data
-            });
-        }
-    }
 });
