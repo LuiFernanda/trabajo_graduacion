@@ -5731,6 +5731,15 @@ __webpack_require__.r(__webpack_exports__);
       }, this.inputCui = '', this.inputGender = '', this.inputDate = '', this.inputAddress = '', this.inputCel = '', $('#personaModal').modal('hide')), this.$alertify.alert('Trabajo de graduacion', 'Agregado!', function () {
         alertify.success('Ok');
       }), this.viewPersonas();
+    },
+    viewPersonas: function viewPersonas() {
+      var _this2 = this;
+
+      axios.get('persona').then(function (response) {
+        _this2.persona = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   }
 });

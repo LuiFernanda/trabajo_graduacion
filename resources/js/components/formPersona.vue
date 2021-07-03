@@ -101,7 +101,16 @@ export default {
                     alertify.success('Ok'); 
                 }),
                 this.viewPersonas()
-            }
+            },
+            viewPersonas(){
+            axios.get('persona')
+            .then((response) =>{
+                this.persona = response.data
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+        }
         }
 }
 </script>
