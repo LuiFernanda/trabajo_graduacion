@@ -9,6 +9,9 @@ const { default: axios } = require('axios');
 require('./bootstrap');
 
 window.Vue = require('vue').default;
+import Vue from 'vue';
+import VueAlertify from 'vue-alertify';
+Vue.use(VueAlertify);
 
 /**
  * The following block of code may be used to automatically register your
@@ -21,8 +24,9 @@ window.Vue = require('vue').default;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('form-component', require('./components/formPersona.vue').default);
-Vue.component('show-component', require('./components/showPersona.vue').default);
+Vue.component('form-persona', require('./components/formPersona.vue').default);
+Vue.component('edit-persona', require('./components/editPersona.vue').default);
+Vue.component('show-persona', require('./components/showPersona.vue').default);
 Vue.component('persona-component', require('./components/PersonaComponent.vue').default);
 
 /**

@@ -31,6 +31,7 @@ class PersonaController extends Controller
         $this->validate($request, [
             'cui' => 'required|max:13|min:13',
             'name' =>'required',
+            'gender' => 'required',
             'address' => 'required',
             'date' => 'required',
             'cel' => 'required|max:8|min:8'
@@ -40,6 +41,7 @@ class PersonaController extends Controller
         'cui' => $request->input('cui'),
         'nombre_completo' => $request->input('name'),
         'direccion' => $request->input('address'),
+        'genero' => $request->input('gender'),
         'fecha_nac' => $request->input('date'),
         'no_tel' => $request->input('cel')
         ]);
@@ -55,8 +57,7 @@ class PersonaController extends Controller
     public function show($id)
     {
         //mostrar datos de una sola persona
-        return $id;
-        //return persona::find($id);
+        return persona::find($id);
     }
 
     /**
@@ -68,10 +69,12 @@ class PersonaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         //Registramos la modificacion de los datos
         $persona = persona::find($id);
         $persona->cui = $request->cui;
         $persona->nombre_completo = $request->name;
+        $persona->genero = $request->gender;
         $persona->direccion = $request->address;
         $persona->fecha_nac = $request->date;
         $persona->no_tel = $request->cel;

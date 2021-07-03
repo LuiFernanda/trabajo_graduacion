@@ -58,77 +58,12 @@
                                 </div>
                             </div>
                         </div>
-    <!-- table -->
-        <table class="table">
-            <thead>
-                <tr>
-                <th scope="col">#</th>
-                <th scope="col">CUI</th>
-                <th scope="col">Nombre completo</th>
-                <th scope="col">Dirección</th>
-                <th scope="col">Genero</th>
-                <th scope="col">Fecha de nacimiento</th>
-                <th scope="col">Numero de celular</th>
-                <th colspan="1">
-					&nbsp;
-				</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="data in persona" :key="data.id">
-                <th scope="row">{{data.id}}</th>
-                <td>{{data.cui}}</td>
-                <td>{{data.nombre_completo}}</td>
-                <td>{{data.direccion}}</td>
-                <td>{{data.genero}}</td>
-                <td>{{data.fecha_nac}}</td>
-                <td>{{data.no_tel}}</td>
-                <td><button type="button" class="btn btn-warning" v-on:click="verPersona(data.id)"> Actualizar </button></td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 </template>
 
 <script>
 export default {
-    data(){
-        return{
-            persona: [],
-            upersona: [],
-            inputNameu: "",
-            inputCuiu: "",
-            inputGenderu: "",
-            inputDateu: "",
-            inputCelu: "",
-            inputAddressu: "",
-            idp: ""
-        }
-    },
-    mounted(){
-        this.viewPersonas();
-    },
     methods:{
-        verPersona(id){
-            const params ={
-                id: id
-            }
-            axios.get('persona/'+id)
-            .then((response) =>{
-                $('#udateModal').modal('show'),
-                this.upersona = response.data,
-                this.inputNameu = this.upersona.nombre_completo,
-                this.inputCuiu = this.upersona.cui,
-                this.inputGenderu = this.upersona.genero,
-                this.inputDateu = this.upersona.fecha_nac,
-                this.inputAddressu = this.upersona.direccion,
-                this.inputCelu = this.upersona.no_tel,
-                this.idp = this.upersona.id
-            })
-            .catch(function(error) {
-                console.log(error);
-            });
-        },
         updatePersona(){
                 const paramsu ={
                     cui: this.inputCuiu,
@@ -153,16 +88,7 @@ export default {
                     alertify.success('Ok'); 
                 }),
                 this.viewPersonas()
-            },
-        viewPersonas(){
-            axios.get('persona')
-            .then((response) =>{
-                this.persona = response.data
-            })
-            .catch(function(error) {
-                console.log(error);
-            });
-        }
+            }
     }
 }
 </script>

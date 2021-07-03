@@ -30,9 +30,18 @@
                                 </div>
                                 
                             </div>
-                            <div class="form-group">
-                                <label for="inputAddress">Dirección</label>
-                                <input type="text" class="form-control" v-model="inputAddress" placeholder="Solola, Solola" required="true">
+                            <div class="form-row">
+                                <div class="form-group cold-md-4">
+                                    <label for="inputGender">Genero</label>
+                                    <select class="form-control" v-model="inputGender" required="true">
+                                        <option value="M" selected>Masculino</option>
+                                        <option value="F">Femenino</option>
+                                    </select>
+                                </div>
+                                <div class="form-group cold-md-8">
+                                    <label for="inputAddress">Dirección</label>
+                                    <input type="text" class="form-control" v-model="inputAddress" placeholder="Solola, Solola" required="true">
+                                </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -53,7 +62,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+    </div>
 </template>
 
 <script>
@@ -62,6 +71,7 @@ export default {
             return{
                 inputName: "",
                 inputCui: "",
+                inputGender: "",
                 inputDate: "",
                 inputCel: "",
                 inputAddress: ""
@@ -72,6 +82,7 @@ export default {
                 const params ={
                     cui: this.inputCui,
                     name: this.inputName,
+                    gender: this.inputGender,
                     address: this.inputAddress,
                     date: this.inputDate,
                     cel: this.inputCel
@@ -80,13 +91,16 @@ export default {
                 .then((response) => 
                 this.inputName = '',
                 this.inputCui = '',
+                this.inputGender = '',
                 this.inputDate = '',
                 this.inputAddress = '',
                 this.inputCel = '',
-                $('#personaModal').modal('hide'))
-                .catch(function(error) {
-                    console.log(error);
-                });
+                $('#personaModal').modal('hide')),
+                this.$alertify.alert('Trabajo de graduacion','Agregado!',
+                function(){
+                    alertify.success('Ok'); 
+                }),
+                this.viewPersonas()
             }
         }
 }
