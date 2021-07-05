@@ -11,15 +11,7 @@ require('./bootstrap');
 window.Vue = require('vue').default;
 import Vue from 'vue';
 import VueAlertify from 'vue-alertify';
-import VueHasErrorLaravel from 'vue-has-error-laravel';
-
 Vue.use(VueAlertify);
-Vue.use(VueHasErrorLaravel,{
-    className:'is-invalid',
-    tagName:'div',
-    tagClassName:'invalid-feedback',
-    showErrorMessage:true
-});
 
 /**
  * The following block of code may be used to automatically register your
@@ -35,10 +27,7 @@ Vue.use(VueHasErrorLaravel,{
 Vue.component('form-persona', require('./components/formPersona.vue').default);
 Vue.component('edit-persona', require('./components/editPersona.vue').default);
 Vue.component('show-persona', require('./components/showPersona.vue').default);
-//Vue.component('edit-estado', require('./components/editEstado.vue').default);
-Vue.component('show-estado', require('./components/showEstado.vue').default);
 Vue.component('persona-component', require('./components/PersonaComponent.vue').default);
-Vue.component('estado-component', require('./components/EstadoComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -29,12 +29,12 @@ class PersonaController extends Controller
     {
         //Insercion de datos dentro de la base de datos
         $this->validate($request, [
-            'cui' => 'required|size:13|unique:personas',
+            'cui' => 'required|max:13|min:13',
             'name' =>'required',
             'gender' => 'required',
             'address' => 'required',
             'date' => 'required',
-            'cel' => 'required|size:8'
+            'cel' => 'required|max:8|min:8'
         ]);
 
         $persona = persona::create([
@@ -45,7 +45,7 @@ class PersonaController extends Controller
         'fecha_nac' => $request->input('date'),
         'no_tel' => $request->input('cel')
         ]);
-        return;
+        return $persona;
     }
 
     /**
@@ -60,17 +60,6 @@ class PersonaController extends Controller
         return persona::find($id);
     }
 
-        /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function search($id)
-    {
-        //mostrar datos de una sola persona
-        return persona::where('cui', '=', $id)->get();
-    }
     /**
      * Update the specified resource in storage.
      *
@@ -80,15 +69,8 @@ class PersonaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         //Registramos la modificacion de los datos
-        $this->validate($request, [
-            'cui' => 'required|size:13',
-            'name' =>'required',
-            'gender' => 'required',
-            'address' => 'required',
-            'date' => 'required',
-            'cel' => 'required|size:8'
-        ]);
         $persona = persona::find($id);
         $persona->cui = $request->cui;
         $persona->nombre_completo = $request->name;
