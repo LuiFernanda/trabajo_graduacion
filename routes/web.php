@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\personaController;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,6 +24,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::apiResource('persona', personaController::class);
-Route::apiResource('estado', EstadoController::class);
 
-Route::get('/busqueda/{persona}', [personaController::class, 'search'])->name('searchpersona');
+//Route::get('/persona/{nombre}', [personaController::class, 'show'])->name('unapersona');

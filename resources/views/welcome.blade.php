@@ -3,8 +3,7 @@
 @section('content')
     <body class="antialiased">
         <div id='app'>
-            <!--persona-component></persona-component-->
-            <estado-component></estado-component>
+            <persona-component></persona-component>
         </div>
     </body>
 @endsection
