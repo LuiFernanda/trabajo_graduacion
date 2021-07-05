@@ -5522,7 +5522,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
 
 /***/ }),
@@ -41781,11 +41780,9 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("form-component", [_vm._v("Form para guardar datos")]),
+      _c("form-persona", [_vm._v("Ver registros")]),
       _vm._v(" "),
       _c("hr"),
-      _vm._v(" "),
-      _c("form-persona", [_vm._v("Ver registros")]),
       _vm._v(" "),
       _c("show-persona", [_vm._v("Ver registros")])
     ],
