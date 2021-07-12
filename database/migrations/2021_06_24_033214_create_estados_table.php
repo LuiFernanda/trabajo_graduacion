@@ -14,16 +14,18 @@ class CreateEstadosTable extends Migration
     public function up()
     {
         Schema::create('estados', function (Blueprint $table) {
-            $table->increments('id');
-            $table->boolean('estado');
-            $table->boolean('cuarentena');
-            $table->timestamps();
+            $table->id();
+            $table->boolean('estado')->nullable();
+            $table->boolean('cuarentena')->nullable();
+            $table->boolean('alta')->nullable();
+
+            $table->unsignedBigInteger('persona_id');
             
-            $table->integer('id_persona')->unsigned()->index()->nullable();
-            $table->foreign('id_persona')
+            $table->foreign('persona_id')
             ->references('id')
-            ->on('persona')
-            ->onDelete('set null');
+            ->on('personas')
+            ->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

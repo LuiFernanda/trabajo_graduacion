@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\estado;
 use App\Models\persona;
 use Illuminate\Http\Request;
 
@@ -69,9 +70,41 @@ class PersonaController extends Controller
     public function search($id)
     {
         //mostrar datos de una sola persona
-        return persona::where('cui', '=', $id)->get();
+        $persona = new persona();
+        $persona = persona::where('cui', 'like', $id.'%')->get();
+        return $persona;
     }
-    /**
+    
+        /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function searchCui($id)
+    {
+        //mostrar datos de una sola persona
+        $persona = new persona();
+        $persona = persona::where('cui', 'like', $id.'%')->first();
+        return $persona;
+    }
+    
+
+        /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function estado($id)
+    {
+        //mostrar datos de una sola persona
+        $persona = new persona();
+        $persona = persona::find($id);
+        return $persona->estado;
+    }
+
+        /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

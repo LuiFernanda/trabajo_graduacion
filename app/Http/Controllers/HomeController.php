@@ -25,4 +25,16 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function persona(){
+        return view('persona');
+    }
+    public function estado(){
+        return view('estado');
+    }
+    public function usuario(){
+        return view('auth.register');
+    }
+    public function info(){
+        return view('información');
+    }
 }

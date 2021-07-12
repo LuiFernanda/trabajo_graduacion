@@ -35,10 +35,12 @@ Vue.use(VueHasErrorLaravel,{
 Vue.component('form-persona', require('./components/formPersona.vue').default);
 Vue.component('edit-persona', require('./components/editPersona.vue').default);
 Vue.component('show-persona', require('./components/showPersona.vue').default);
-//Vue.component('edit-estado', require('./components/editEstado.vue').default);
+Vue.component('perfil', require('./components/perfil.vue').default);
 Vue.component('show-estado', require('./components/showEstado.vue').default);
 Vue.component('persona-component', require('./components/PersonaComponent.vue').default);
 Vue.component('estado-component', require('./components/EstadoComponent.vue').default);
+Vue.component('buscador-component', require('./components/BuscarComponent.vue').default);
+Vue.component('info-component', require('./components/estados.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
