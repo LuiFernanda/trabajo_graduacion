@@ -5523,6 +5523,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -6044,6 +6046,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -6057,7 +6060,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get('busquedaCui/' + id).then(function (response) {
-        _this.dpersona = response.data, _this.estadop(_this.dpersona.id);
+        _this.dpersona = response.data;
+
+        _this.estadop(_this.dpersona.id);
       })["catch"](function (error) {
         console.log(error);
       });
@@ -6066,7 +6071,11 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get('estado/' + id).then(function (response) {
-        _this2.destado = response.data;
+        _this2.destado = response.data, console.log(_this2.destado);
+
+        if (_this2.destado == '') {
+          _this2.destado = 0;
+        }
       })["catch"](function (error) {
         console.log(error);
       });
@@ -6186,12 +6195,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       persona: [],
       idp: "",
       idper: "",
+      idupdate: "",
       positive: "",
       cuarentena: "",
       high: "",
@@ -6250,7 +6261,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (_this2.isObjEmpty(_this2.upersona)) {
           _this2.cuarentena = "", _this2.positive = "", _this2.high = "", _this2.idper = id, $("#updateEstado").hide(), $("#highInput").hide();
         } else {
-          $("#createEstado").hide(), _this2.cuarentena = _this2.upersona[0].cuarentena, _this2.positive = _this2.upersona[0].estado, _this2.idper = _this2.upersona[0].persona_id;
+          $("#createEstado").hide(), _this2.cuarentena = _this2.upersona[0].cuarentena, _this2.positive = _this2.upersona[0].estado, _this2.idper = _this2.upersona[0].persona_id, _this2.idupdate = _this2.upersona[0].id;
         }
       })["catch"](function (error) {
         console.log(error);
@@ -6265,15 +6276,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         id: this.idper
       };
       axios.post('estado', estados).then(function (res) {
-        _this3.cuarentena = "", _this3.positive = "", console.log(res.data);
-        $('#estadoModal').modal('hide'), _this3.$alertify.alert('Trabajo de graduacion', 'Actualizado!', function () {
+        _this3.cuarentena = "", _this3.positive = "";
+        $('#estadoModal').modal('hide'), _this3.$alertify.alert('Trabajo de graduacion', 'Registrado!', function () {
           alertify.success('Ok');
         });
       })["catch"](function (error) {
         if (error.response.status === 422) {
           _this3.errors = error.response.data.errors;
         } else {
-          _this3.cuarentena = "", _this3.positive = "", $('#estadoModal').modal('hide'), _this3.$alertify.alert('Trabajo de graduacion', 'Actualizado!', function () {
+          _this3.cuarentena = "", _this3.positive = "", $('#estadoModal').modal('hide'), _this3.$alertify.alert('Trabajo de graduacion', 'Registrado!', function () {
             alertify.success('Ok');
           });
         }
@@ -6285,11 +6296,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var estadosu = {
         cuarentena: this.cuarentena,
         positivo: this.positive,
-        id: this.idper,
+        id: this.idupdate,
         alta: this.high
       };
-      axios.put('estado/' + this.idper, estadosu).then(function (res) {
-        _this4.cuarentena = "", _this4.positive = "", _this4.high = "", console.log(res.data);
+      axios.put('estado/' + this.idupdate, estadosu).then(function (res) {
+        _this4.cuarentena = "", _this4.positive = "", _this4.high = "";
         $('#estadoModal').modal('hide'), _this4.$alertify.alert('Trabajo de graduacion', 'Agregado!', function () {
           alertify.success('Ok');
         });
@@ -42899,49 +42910,44 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    [
-      _c(
-        "div",
-        { staticClass: "input-group search-area ml-auto d-inline-flex" },
-        [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.idp,
-                expression: "idp"
-              }
-            ],
-            staticClass: "form-control me-2",
-            attrs: {
-              type: "search",
-              placeholder: "Buscar por CUI",
-              "aria-label": "Search"
-            },
-            domProps: { value: _vm.idp },
-            on: {
-              keyup: function($event) {
-                return _vm.buscarPersona()
-              },
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.idp = $event.target.value
-              }
+  return _c("div", { staticClass: "container" }, [
+    _c(
+      "div",
+      { staticClass: "input-group search-area ml-auto d-inline-flex" },
+      [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.idp,
+              expression: "idp"
             }
-          })
-        ]
-      ),
-      _vm._v(" "),
-      _c("perfil", { ref: "perfil" })
-    ],
-    1
-  )
+          ],
+          staticClass: "form-control me-2",
+          attrs: {
+            type: "search",
+            placeholder: "Buscar por CUI",
+            "aria-label": "Search"
+          },
+          domProps: { value: _vm.idp },
+          on: {
+            keyup: function($event) {
+              return _vm.buscarPersona()
+            },
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.idp = $event.target.value
+            }
+          }
+        })
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [_c("perfil", { ref: "perfil" })], 1)
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -44025,101 +44031,96 @@ var render = function() {
               "media d-sm-flex d-block text-center text-sm-left pb-4 mb-4 border-bottom"
           },
           [
-            _c(
-              "div",
-              { staticClass: "media-body align-items-center" },
-              [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "d-sm-flex d-block justify-content-between my-3 my-sm-0"
-                  },
-                  [
-                    _c("div", [
-                      _c("h3", [_vm._v(_vm._s(_vm.dpersona.nombre_completo))]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "mb-2 mb-sm-2" }, [
-                        _vm._v(_vm._s(_vm.dpersona.cui))
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "mb-2 mb-sm-2" }, [
-                        _vm._v("Fecha de nacimiento")
-                      ])
+            _c("div", { staticClass: "media-body align-items-center" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "d-sm-flex d-block justify-content-between my-3 my-sm-0"
+                },
+                [
+                  _c("div", [
+                    _c("h3", [_vm._v(_vm._s(_vm.dpersona.nombre_completo))]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "mb-2 mb-sm-2" }, [
+                      _vm._v(_vm._s(_vm.dpersona.cui))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "mb-2 mb-sm-2" }, [
+                      _vm._v("Fecha de nacimiento")
                     ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "btn btn-rounded text-black mb-2 mr-2" },
-                  [
-                    _c(
-                      "svg",
-                      {
-                        staticClass: "bi bi-gender-male",
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          width: "16",
-                          height: "16",
-                          fill: "currentColor",
-                          viewBox: "0 0 16 16"
-                        }
-                      },
-                      [
-                        _c("path", {
-                          attrs: {
-                            "fill-rule": "evenodd",
-                            d:
-                              "M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2H9.5zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"
-                          }
-                        })
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _vm.dpersona.genero == "F"
-                      ? _c("p", [_vm._v("Femenino")])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.dpersona.genero == "M"
-                      ? _c("p", [_vm._v("Masculino")])
-                      : _vm._e()
-                  ]
-                ),
-                _vm._v(" "),
-                _vm._l(_vm.destado, function(data) {
-                  return _c(
-                    "div",
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "btn btn-rounded text-black mb-2 mr-2" },
+                [
+                  _c(
+                    "svg",
                     {
-                      key: data.id,
-                      staticClass: "btn btn-rounded text-black mb-2 mr-2"
+                      staticClass: "bi bi-gender-male",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        width: "16",
+                        height: "16",
+                        fill: "currentColor",
+                        viewBox: "0 0 16 16"
+                      }
                     },
                     [
-                      data.estado == null && data.cuarentena == null
-                        ? _c("div", [
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "bi bi-circle-fill",
-                                attrs: {
-                                  xmlns: "http://www.w3.org/2000/svg",
-                                  width: "16",
-                                  height: "16",
-                                  fill: "#369DC9",
-                                  viewBox: "0 0 16 16"
-                                }
-                              },
-                              [
-                                _c("circle", {
-                                  attrs: { cx: "8", cy: "8", r: "8" }
-                                })
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Normal")])
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
+                      _c("path", {
+                        attrs: {
+                          "fill-rule": "evenodd",
+                          d:
+                            "M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2H9.5zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm.dpersona.genero == "F"
+                    ? _c("p", [_vm._v("Femenino")])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.dpersona.genero == "M"
+                    ? _c("p", [_vm._v("Masculino")])
+                    : _vm._e()
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "btn btn-rounded text-black mb-2 mr-2" },
+                [
+                  _vm.destado == 0
+                    ? _c("div", [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "bi bi-circle-fill",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              width: "16",
+                              height: "16",
+                              fill: "#369DC9",
+                              viewBox: "0 0 16 16"
+                            }
+                          },
+                          [
+                            _c("circle", {
+                              attrs: { cx: "8", cy: "8", r: "8" }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("p", [_vm._v("Normal")])
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm._l(_vm.destado, function(data) {
+                    return _c("div", { key: data.id }, [
                       data.estado == "1"
                         ? _c("div", [
                             _c(
@@ -44169,12 +44170,12 @@ var render = function() {
                             _c("p", [_vm._v("Cuarentena")])
                           ])
                         : _vm._e()
-                    ]
-                  )
-                })
-              ],
-              2
-            )
+                    ])
+                  })
+                ],
+                2
+              )
+            ])
           ]
         ),
         _vm._v(" "),
@@ -44437,6 +44438,27 @@ var render = function() {
                             return
                           }
                           _vm.idper = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.idupdate,
+                          expression: "idupdate"
+                        }
+                      ],
+                      attrs: { type: "hidden" },
+                      domProps: { value: _vm.idupdate },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.idupdate = $event.target.value
                         }
                       }
                     }),

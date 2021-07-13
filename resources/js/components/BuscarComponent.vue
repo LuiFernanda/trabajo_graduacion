@@ -3,7 +3,9 @@
         <div class="input-group search-area ml-auto d-inline-flex">
             <input class="form-control me-2" v-on:keyup="buscarPersona()" v-model="idp" type="search" placeholder="Buscar por CUI" aria-label="Search">
         </div>
-        <perfil ref="perfil"></perfil>
+        <div class="row">
+            <perfil ref="perfil"></perfil>
+        </div>
     </div>
 </template>
 

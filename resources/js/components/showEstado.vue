@@ -18,6 +18,7 @@
                 <div class="modal-body">
                     <div class="form-row">
                         <input type="hidden" v-model="idper"/>
+                        <input type="hidden" v-model="idupdate"/>
                         <div class="form-group col-md-6">
                             <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="1" v-model="cuarentena" id="inpc">
@@ -98,6 +99,7 @@ export default {
             persona: [],
             idp: "",
             idper: "",
+            idupdate: "",
             positive: "",
             cuarentena: "",
             high: "",
@@ -151,7 +153,8 @@ export default {
                         $("#createEstado").hide(),
                         this.cuarentena = this.upersona[0].cuarentena,
                         this.positive = this.upersona[0].estado,
-                        this.idper = this.upersona[0].persona_id
+                        this.idper = this.upersona[0].persona_id,
+                        this.idupdate = this.upersona[0].id
                     }
             })
             .catch(function(error) {
@@ -167,10 +170,9 @@ export default {
                 axios.post('estado', estados)
                     .then(res => {
                         this.cuarentena = "",
-                        this.positive = "",
-                        console.log(res.data)
+                        this.positive = ""
                         $('#estadoModal').modal('hide'),
-                        this.$alertify.alert('Trabajo de graduacion','Actualizado!',
+                        this.$alertify.alert('Trabajo de graduacion','Registrado!',
                         function(){
                             alertify.success('Ok'); 
                         })
@@ -181,7 +183,7 @@ export default {
                         this.cuarentena = "",
                         this.positive = "",
                         $('#estadoModal').modal('hide'),
-                        this.$alertify.alert('Trabajo de graduacion','Actualizado!',
+                        this.$alertify.alert('Trabajo de graduacion','Registrado!',
                         function(){
                             alertify.success('Ok'); 
                         })
@@ -192,15 +194,14 @@ export default {
             const estadosu ={
                     cuarentena: this.cuarentena,
                     positivo: this.positive,
-                    id: this.idper,
+                    id: this.idupdate,
                     alta: this.high
                 }
-                axios.put('estado/'+this.idper, estadosu)
+                axios.put('estado/'+this.idupdate, estadosu)
                     .then(res => {
                         this.cuarentena = "",
                         this.positive = "",
-                        this.high = "",
-                        console.log(res.data)
+                        this.high = ""
                         $('#estadoModal').modal('hide'),
                         this.$alertify.alert('Trabajo de graduacion','Agregado!',
                         function(){

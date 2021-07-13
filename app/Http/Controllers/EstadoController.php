@@ -89,11 +89,11 @@ class EstadoController extends Controller
     {
         //
         $estado = estado::find($id);
-
         $estado->estado = $request->positivo;
         $estado->cuarentena = $request->cuarentena;
         $estado->alta = $request->alta;
         $estado->save();
+        return $estado;
     }
 
     /**

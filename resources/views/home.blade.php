@@ -12,9 +12,11 @@
     </div>
     <hr>
         <info-component></info-component>
-    <div class="row">
+    <div class="row py-2">
         <h3 class="text-black font-w600">Buscar persona</h3>
-        <buscador-component></buscador-component>
+        <div class="container-fluid">
+            <buscador-component></buscador-component>
+        </div>    
     </div>
 </div>
 @endsection

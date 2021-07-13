@@ -19,26 +19,27 @@
                             <p v-if="dpersona.genero == 'F'">Femenino</p>
                             <p v-if="dpersona.genero == 'M'">Masculino</p>
                         </div>
-                        <div v-for="data in destado" :key="data.id" class="btn btn-rounded text-black mb-2 mr-2">
-                            <div v-if="data.estado == null && data.cuarentena == null">
+                        <div class="btn btn-rounded text-black mb-2 mr-2">
+                            <div v-if="destado == 0">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#369DC9" class="bi bi-circle-fill" viewBox="0 0 16 16">
                                     <circle cx="8" cy="8" r="8"/>
                                 </svg>
                                 <p >Normal</p>
                             </div>
-                            <div v-if="data.estado == '1'" >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F46B68" class="bi bi-circle-fill" viewBox="0 0 16 16">
-                                    <circle cx="8" cy="8" r="8"/>
-                                </svg>
-                                <p >Positivo</p>
+                            <div v-for="data in destado" :key="data.id">
+                                <div v-if="data.estado == '1'" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F46B68" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                                        <circle cx="8" cy="8" r="8"/>
+                                    </svg>
+                                    <p >Positivo</p>
+                                </div>
+                                <div v-if="data.cuarentena == '1'" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFB800" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                                        <circle cx="8" cy="8" r="8"/>
+                                    </svg>
+                                    <p >Cuarentena</p>
+                                </div>
                             </div>
-                            <div v-if="data.cuarentena == '1'" >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFB800" class="bi bi-circle-fill" viewBox="0 0 16 16">
-                                    <circle cx="8" cy="8" r="8"/>
-                                </svg>
-                                <p >Cuarentena</p>
-                            </div>
-
                         </div>
                     </div>
                 </div>
@@ -102,7 +103,7 @@ export default {
         persona(id){
             axios.get('busquedaCui/'+id)
             .then((response) =>{
-                this.dpersona = response.data,
+                this.dpersona = response.data
                 this.estadop(this.dpersona.id)
             })
             .catch(function(error) {
@@ -112,7 +113,11 @@ export default {
         estadop(id){
             axios.get('estado/'+id)
             .then((response) =>{
-                this.destado = response.data
+                this.destado = response.data,
+                console.log(this.destado)
+                if(this.destado == ''){
+                    this.destado = 0
+                }
             })
             .catch(function(error) {
                 console.log(error);
