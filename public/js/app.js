@@ -46018,7 +46018,7 @@ var render = function() {
         "tbody",
         _vm._l(_vm.user, function(data) {
           return _c("tr", { key: data.id }, [
-            _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(++_vm.i))]),
+            _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(data.id))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(data.name))]),
             _vm._v(" "),

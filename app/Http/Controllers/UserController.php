@@ -16,7 +16,8 @@ class UserController extends Controller
     public function index()
     {
         //
-        return User::where('estado', null)->get();
+        return User::where('estado', null)
+        ->where('tipo', 0)->get();
     }
 
     /**

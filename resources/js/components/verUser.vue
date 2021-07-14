@@ -41,7 +41,6 @@ export default {
     },
     mounted(){
         this.viewUsers();
-
     },
     methods:{
         updateUser(id){
