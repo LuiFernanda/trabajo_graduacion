@@ -14,7 +14,7 @@
             </thead>
             <tbody>
                 <tr v-for="data in user" :key="data.id">
-                <th scope="row">{{++i}}</th>
+                <th scope="row">{{data.id}}</th>
                 <td>{{data.name}}</td>
                 <td>{{data.email}}</td>
                 <td v-if="data.tipo == 1">Administrador</td>
