@@ -34,6 +34,9 @@ class HomeController extends Controller
     public function usuario(){
         return view('auth.register');
     }
+    public function usuarios(){
+        return view('auth.view');
+    }
     public function info(){
         return view('información');
     }
