@@ -17,7 +17,8 @@ class UserController extends Controller
     {
         //
         return User::where('estado', null)
-        ->where('tipo', 0)->get();
+        ->where('id', '>', 1)
+        ->get();
     }
 
     /**
@@ -63,9 +64,6 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $persona = User::find($id);
-        $persona->estado = $request->estado;
-        $persona->save();
     }
 
     /**
@@ -77,5 +75,6 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        return User::destroy($id);
     }
 }

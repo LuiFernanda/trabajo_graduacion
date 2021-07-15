@@ -6691,6 +6691,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -6706,18 +6707,15 @@ __webpack_require__.r(__webpack_exports__);
     updateUser: function updateUser(id) {
       var _this = this;
 
-      var paramsu = {
-        estado: 1
-      };
-      axios.put('user/' + id, paramsu).then(function (res) {
-        _this.$alertify.alert('Trabajo de graduacion', 'Actualizado!', function () {
+      axios["delete"]('user/' + id).then(function (res) {
+        _this.$alertify.alert('Trabajo de graduacion', 'Eliminado!', function () {
           alertify.success('Ok');
         }), _this.viewUsers();
       })["catch"](function (error) {
         if (error.response.status === 422) {
           _this.errors = error.response.data.errors;
         } else {
-          _this.$alertify.alert('Trabajo de graduacion', 'Actualizado!', function () {
+          _this.$alertify.alert('Trabajo de graduacion', 'Eliminado!', function () {
             alertify.success('Ok');
           }), _this.viewUsers();
         }
@@ -6728,7 +6726,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('user').then(function (response) {
         _this2.user = response.data;
-        console.log(_this2.user);
       })["catch"](function (error) {
         console.log(error);
       });
@@ -46062,7 +46059,7 @@ var render = function() {
                       })
                     ]
                   ),
-                  _vm._v("\n                    Deshabilitar ")
+                  _vm._v("\n                    Eliminar ")
                 ]
               )
             ])
