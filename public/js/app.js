@@ -43728,7 +43728,7 @@ var staticRenderFns = [
       _c(
         "h5",
         { staticClass: "modal-title", attrs: { id: "udateModalLabel" } },
-        [_vm._v("Editar perosna")]
+        [_vm._v("Editar Persona")]
       ),
       _vm._v(" "),
       _c(
@@ -44326,7 +44326,7 @@ var staticRenderFns = [
       _c(
         "h5",
         { staticClass: "modal-title", attrs: { id: "personaModalLabel" } },
-        [_vm._v("Registrar perosna")]
+        [_vm._v("Registrar Persona")]
       ),
       _vm._v(" "),
       _c(
@@ -45920,7 +45920,7 @@ var staticRenderFns = [
       _c(
         "h5",
         { staticClass: "modal-title", attrs: { id: "udateModalLabel" } },
-        [_vm._v("Editar perosna")]
+        [_vm._v("Editar Persona")]
       ),
       _vm._v(" "),
       _c(
