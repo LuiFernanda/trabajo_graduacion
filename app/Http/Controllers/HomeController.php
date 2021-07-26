@@ -37,7 +37,10 @@ class HomeController extends Controller
     public function usuarios(){
         return view('auth.view');
     }
+    public function reporte(){
+        return view('reporte');
+    }
     public function info(){
-        return view('información');
+        return view('informacion');
     }
 }

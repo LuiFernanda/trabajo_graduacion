@@ -57,7 +57,9 @@ class EstadoController extends Controller
     public function search($id)
     {
         //listar datos
-        return estado::where('cui', 'like', $id);
+        $estado = new estado();
+        $estado = estado::find($id);
+        return $estado->persona;
     }
     
     public function status()

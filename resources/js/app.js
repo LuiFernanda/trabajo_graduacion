@@ -9,6 +9,7 @@ const { default: axios } = require('axios');
 require('./bootstrap');
 
 window.Vue = require('vue').default;
+
 import Vue from 'vue';
 import VueAlertify from 'vue-alertify';
 import VueHasErrorLaravel from 'vue-has-error-laravel';
@@ -20,6 +21,7 @@ Vue.use(VueHasErrorLaravel,{
     tagClassName:'invalid-feedback',
     showErrorMessage:true
 });
+Vue.use(require('vue-moment'));
 
 /**
  * The following block of code may be used to automatically register your
@@ -40,9 +42,15 @@ Vue.component('show-estado', require('./components/showEstado.vue').default);
 Vue.component('persona-component', require('./components/PersonaComponent.vue').default);
 Vue.component('estado-component', require('./components/EstadoComponent.vue').default);
 Vue.component('buscador-component', require('./components/BuscarComponent.vue').default);
+Vue.component('reporte-component', require('./components/ReporteComponent.vue').default);
 Vue.component('info-component', require('./components/estados.vue').default);
 Vue.component('user-component', require('./components/registroUser.vue').default);
 Vue.component('users-component', require('./components/verUser.vue').default);
+
+Vue.component('restado-component', require('./components/reportes/estado.vue').default);
+Vue.component('rtodo-component', require('./components/reportes/todos.vue').default);
+Vue.component('rcuarentena-component', require('./components/reportes/cuarentena.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -74,7 +74,33 @@ class PersonaController extends Controller
         $persona = persona::where('cui', 'like', $id.'%')->get();
         return $persona;
     }
-    
+
+    public function searchA()
+    {
+        /*listar datos
+        $persona = persona::find(1);
+        return $persona->estado;*/
+        $persona = persona::join('estados', 'personas.id', 'estados.persona_id')
+        ->select('personas.cui', 'personas.nombre_completo', 'personas.genero',
+        'personas.direccion', 'personas.fecha_nac', 'personas.no_tel',
+        'estados.alta', 'estados.updated_at')
+        ->where('estados.alta', 1)
+        ->get();
+        return $persona;
+    }
+    public function searchD()
+    {
+        /*listar datos
+        $persona = persona::find(1);
+        return $persona->estado;*/
+        $persona = persona::join('estados', 'personas.id', 'estados.persona_id')
+        ->select('personas.cui', 'personas.nombre_completo', 'personas.genero',
+        'personas.direccion', 'personas.fecha_nac', 'personas.no_tel',
+        'estados.estado', 'estados.cuarentena', 'estados.alta', 'estados.updated_at')
+        ->where('estados.alta', null)
+        ->get();
+        return $persona;
+    }
         /**
      * Display the specified resource.
      *

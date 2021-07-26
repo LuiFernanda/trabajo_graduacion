@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "vue-alertify": "^1.1.0",
-        "vue-has-error-laravel": "^0.1.16"
+        "vue-has-error-laravel": "^0.1.16",
+        "vue-moment": "^4.1.0"
     }
 }
