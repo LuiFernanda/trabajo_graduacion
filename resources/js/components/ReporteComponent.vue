@@ -50,7 +50,7 @@ import Four from './reportes/alta.vue';
                             width:500
                         }]
                     };
-                    pdfMake.createPdf(docDefinition).download("Table.pdf");
+                    pdfMake.createPdf(docDefinition).download("Reporte.pdf");
                 }
             })   
             }

@@ -78,8 +78,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="data in persona" :key="data.id">
-                <th scope="row">{{data.id}}</th>
+                <tr v-for="(data, index) in persona" :key="data.id">
+                <th scope="row">{{index + 1}}</th>
                 <td>{{data.cui}}</td>
                 <td>{{data.nombre_completo}}</td>
                 <td>{{data.direccion}}</td>

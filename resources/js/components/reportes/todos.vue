@@ -21,7 +21,7 @@
                 <td>{{data.nombre_completo}}</td>
                 <td>{{data.direccion}}</td>
                 <td>{{data.genero}}</td>
-                <td>{{data.fecha_nac}}</td>
+                <td>{{data.fecha_nac | moment("D/M/YYYY") }}</td>
                 <td>{{data.no_tel}}</td>
                 </tr>
             </tbody>

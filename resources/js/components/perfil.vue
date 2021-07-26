@@ -9,7 +9,6 @@
                             <div>
                                 <h3>{{dpersona.nombre_completo}}</h3>
                                 <p class="mb-2 mb-sm-2">{{dpersona.cui}}</p>
-                                <p class="mb-2 mb-sm-2">Fecha de nacimiento</p>
                             </div>
                         </div>
                         <div class="btn btn-rounded text-black mb-2 mr-2">
@@ -79,7 +78,7 @@
                             </span>
                             <div class="">
                                 <span class="d-block text-light mb-2">Dirección</span>
-                                <p class="fs-18 text-dark">{{dpersona.fecha_nac}}</p>
+                                <p class="fs-18 text-dark">{{dpersona.fecha_nac | moment("D/M/YYYY")}}</p>
                             </div>
                         </div>
                     </div>

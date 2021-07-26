@@ -5677,7 +5677,7 @@ __webpack_require__.r(__webpack_exports__);
               width: 500
             }]
           };
-          pdfMake.createPdf(docDefinition).download("Table.pdf");
+          pdfMake.createPdf(docDefinition).download("Reporte.pdf");
         }
       });
     }
@@ -6034,7 +6034,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
 //
 //
 //
@@ -45260,10 +45259,6 @@ var render = function() {
                     _vm._v(" "),
                     _c("p", { staticClass: "mb-2 mb-sm-2" }, [
                       _vm._v(_vm._s(_vm.dpersona.cui))
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "mb-2 mb-sm-2" }, [
-                      _vm._v("Fecha de nacimiento")
                     ])
                   ])
                 ]
@@ -45539,7 +45534,9 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("p", { staticClass: "fs-18 text-dark" }, [
-                  _vm._v(_vm._s(_vm.dpersona.fecha_nac))
+                  _vm._v(
+                    _vm._s(_vm._f("moment")(_vm.dpersona.fecha_nac, "D/M/YYYY"))
+                  )
                 ])
               ])
             ])
@@ -45920,7 +45917,9 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(data.genero))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.fecha_nac))]),
+              _c("td", [
+                _vm._v(_vm._s(_vm._f("moment")(data.fecha_nac, "D/M/YYYY")))
+              ]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(data.no_tel))]),
               _vm._v(" "),
@@ -46013,7 +46012,9 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(data.genero))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(data.fecha_nac))]),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm._f("moment")(data.fecha_nac, "D/M/YYYY")))
+                  ]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(data.no_tel))]),
                   _vm._v(" "),
@@ -46107,7 +46108,9 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(data.genero))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(data.fecha_nac))]),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm._f("moment")(data.fecha_nac, "D/M/YYYY")))
+                  ]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(data.no_tel))]),
                   _vm._v(" "),
@@ -46198,7 +46201,9 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(data.genero))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.fecha_nac))]),
+              _c("td", [
+                _vm._v(_vm._s(_vm._f("moment")(data.fecha_nac, "D/M/YYYY")))
+              ]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(data.no_tel))])
             ])
@@ -46615,9 +46620,9 @@ var render = function() {
       _vm._v(" "),
       _c(
         "tbody",
-        _vm._l(_vm.persona, function(data) {
+        _vm._l(_vm.persona, function(data, index) {
           return _c("tr", { key: data.id }, [
-            _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(data.id))]),
+            _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(index + 1))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(data.cui))]),
             _vm._v(" "),
@@ -47055,9 +47060,11 @@ var render = function() {
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.persona, function(data) {
+          _vm._l(_vm.persona, function(data, index) {
             return _c("tr", { key: data.id }, [
-              _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(data.id))]),
+              _c("th", { attrs: { scope: "row" } }, [
+                _vm._v(_vm._s(index + 1))
+              ]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(data.cui))]),
               _vm._v(" "),
@@ -47067,7 +47074,9 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(data.genero))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.fecha_nac))]),
+              _c("td", [
+                _vm._v(_vm._s(_vm._f("moment")(data.fecha_nac, "D/M/YYYY")))
+              ]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(data.no_tel))]),
               _vm._v(" "),

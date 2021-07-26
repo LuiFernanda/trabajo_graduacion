@@ -93,13 +93,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="data in persona" :key="data.id">
-                <th scope="row">{{data.id}}</th>
+                <tr v-for="(data, index) in persona" :key="data.id">
+                <th scope="row">{{index + 1}}</th>
                 <td>{{data.cui}}</td>
                 <td>{{data.nombre_completo}}</td>
                 <td>{{data.direccion}}</td>
                 <td>{{data.genero}}</td>
-                <td>{{data.fecha_nac}}</td>
+                <td>{{data.fecha_nac | moment("D/M/YYYY")}}</td>
                 <td>{{data.no_tel}}</td>
                 <td><button type="button" class="btn btn-secondary" v-on:click="verPersona(data.id)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
