@@ -1,14 +1,15 @@
 <template>
     <div class="container">
         <hr>
-        <div class="card">
+        <div class="card" id="tab">
+        <h2 class="text-center">Perfil </h2>
             <div class="card-body">
                 <div class="media d-sm-flex d-block text-center text-sm-left pb-4 mb-4 border-bottom">
                     <div class="media-body align-items-center">
                         <div class="d-sm-flex d-block justify-content-between my-3 my-sm-0">
                             <div>
                                 <h3>{{dpersona.nombre_completo}}</h3>
-                                <p class="mb-2 mb-sm-2">{{dpersona.cui}}</p>
+                                <p class="mb-2 mb-sm-2">CUI: {{dpersona.cui}}</p>
                             </div>
                         </div>
                         <div class="btn btn-rounded text-black mb-2 mr-2">

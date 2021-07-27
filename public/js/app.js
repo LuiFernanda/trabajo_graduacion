@@ -5619,10 +5619,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _reportes_todos_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./reportes/todos.vue */ "./resources/js/components/reportes/todos.vue");
+/* harmony import */ var _BuscarComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BuscarComponent.vue */ "./resources/js/components/BuscarComponent.vue");
 /* harmony import */ var _reportes_estado_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./reportes/estado.vue */ "./resources/js/components/reportes/estado.vue");
 /* harmony import */ var _reportes_cuarentena_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./reportes/cuarentena.vue */ "./resources/js/components/reportes/cuarentena.vue");
 /* harmony import */ var _reportes_alta_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./reportes/alta.vue */ "./resources/js/components/reportes/alta.vue");
+/* harmony import */ var _reportes_todos_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./reportes/todos.vue */ "./resources/js/components/reportes/todos.vue");
 //
 //
 //
@@ -5649,13 +5650,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    One: _reportes_todos_vue__WEBPACK_IMPORTED_MODULE_0__.default,
+    One: _BuscarComponent_vue__WEBPACK_IMPORTED_MODULE_0__.default,
     Two: _reportes_estado_vue__WEBPACK_IMPORTED_MODULE_1__.default,
     Three: _reportes_cuarentena_vue__WEBPACK_IMPORTED_MODULE_2__.default,
     Four: _reportes_alta_vue__WEBPACK_IMPORTED_MODULE_3__.default
@@ -5668,17 +5670,28 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {},
   methods: {
     createPDF: function createPDF() {
-      html2canvas($("#tab")[0], {
-        onrendered: function onrendered(canvas) {
-          var data = canvas.toDataURL();
-          var docDefinition = {
-            content: [{
-              image: data,
-              width: 500
-            }]
-          };
-          pdfMake.createPdf(docDefinition).download("Reporte.pdf");
+      var $elementoParaConvertir = document.getElementById("tab"); // <-- Aquí puedes elegir cualquier elemento del DOM
+
+      html2pdf().set({
+        margin: 1,
+        filename: 'reporte.pdf',
+        image: {
+          type: 'jpeg',
+          quality: 0.98
+        },
+        html2canvas: {
+          scale: 3,
+          // A mayor escala, mejores gráficos, pero más peso
+          letterRendering: true
+        },
+        jsPDF: {
+          unit: "in",
+          format: "a3",
+          orientation: 'portrait' // landscape o portrait
+
         }
+      }).from($elementoParaConvertir).save()["catch"](function (err) {
+        return console.log(err);
       });
     }
   }
@@ -6034,6 +6047,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
 //
 //
 //
@@ -44177,7 +44191,7 @@ var render = function() {
             }
           }
         },
-        [_vm._v("Personas")]
+        [_vm._v("CUI")]
       ),
       _vm._v(" "),
       _c(
@@ -44217,6 +44231,19 @@ var render = function() {
           }
         },
         [_vm._v("De alta")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn",
+          on: {
+            click: function($event) {
+              _vm.selectedComponent = "Five"
+            }
+          }
+        },
+        [_vm._v("Personas")]
       )
     ]),
     _vm._v(" "),
@@ -44227,7 +44254,7 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "row justify-content-end p-2" }, [
+    _c("div", { staticClass: "row justify-content-end p-5" }, [
       _c(
         "button",
         {
@@ -44265,7 +44292,7 @@ var render = function() {
               })
             ]
           ),
-          _vm._v("\n    Imprimir")
+          _vm._v("\n        Imprimir")
         ]
       )
     ])
@@ -44609,7 +44636,7 @@ var staticRenderFns = [
           staticClass: "btn btn-secondary",
           attrs: { type: "button", "data-dismiss": "modal" }
         },
-        [_vm._v("Close")]
+        [_vm._v("Cerrar")]
       )
     ])
   }
@@ -45207,7 +45234,7 @@ var staticRenderFns = [
           staticClass: "btn btn-secondary",
           attrs: { type: "button", "data-dismiss": "modal" }
         },
-        [_vm._v("Close")]
+        [_vm._v("Cerrar")]
       )
     ])
   }
@@ -45237,7 +45264,9 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c("hr"),
     _vm._v(" "),
-    _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card", attrs: { id: "tab" } }, [
+      _c("h2", { staticClass: "text-center" }, [_vm._v("Perfil ")]),
+      _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
         _c(
           "div",
@@ -45258,7 +45287,7 @@ var render = function() {
                     _c("h3", [_vm._v(_vm._s(_vm.dpersona.nombre_completo))]),
                     _vm._v(" "),
                     _c("p", { staticClass: "mb-2 mb-sm-2" }, [
-                      _vm._v(_vm._s(_vm.dpersona.cui))
+                      _vm._v("CUI: " + _vm._s(_vm.dpersona.cui))
                     ])
                   ])
                 ]
@@ -45896,7 +45925,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "mx-auto table-responsive-xl", attrs: { id: "tab" } },
+    { staticClass: "table-responsive-xl", attrs: { id: "tab" } },
     [
       _c("h2", [_vm._v(" Reporte personas")]),
       _vm._v(" "),
@@ -45988,7 +46017,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "mx-auto table-responsive-xl", attrs: { id: "tab" } },
+    { staticClass: "table-responsive-xl", attrs: { id: "tab" } },
     [
       _c("h2", [_vm._v(" Reporte personas en cuarentena")]),
       _vm._v(" "),
@@ -46084,7 +46113,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "mx-auto table-responsive-xl", attrs: { id: "tab" } },
+    { staticClass: "table-responsive-xl", attrs: { id: "tab" } },
     [
       _c("h2", [_vm._v(" Reporte personas positivas")]),
       _vm._v(" "),
@@ -46180,7 +46209,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "mx-auto table-responsive-xl", attrs: { id: "tab" } },
+    { staticClass: "table-responsive-xl", attrs: { id: "tab" } },
     [
       _c("h2", [_vm._v(" Reporte personas")]),
       _vm._v(" "),
@@ -46605,7 +46634,7 @@ var render = function() {
                       staticClass: "btn btn-secondary",
                       attrs: { type: "button", "data-dismiss": "modal" }
                     },
-                    [_vm._v("Close")]
+                    [_vm._v("Cerrar")]
                   )
                 ])
               ]
@@ -47169,7 +47198,7 @@ var staticRenderFns = [
           staticClass: "btn btn-secondary",
           attrs: { type: "button ", "data-dismiss": "modal" }
         },
-        [_vm._v("Close")]
+        [_vm._v("Cerrar")]
       )
     ])
   },

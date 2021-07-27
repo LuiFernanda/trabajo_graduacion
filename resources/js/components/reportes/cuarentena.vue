@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-auto table-responsive-xl" id="tab">
+    <div class="table-responsive-xl" id="tab">
     <h2> Reporte personas en cuarentena</h2>
         <table class="table table-hover">
             <thead>

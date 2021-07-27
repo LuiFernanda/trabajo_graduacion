@@ -31,7 +31,7 @@
                 <!-- Authentication Links -->
                 @guest
                     @if (Route::has('login'))
-                        <li class="nav-item" style="font-size: 1.5vw;">
+                        <li class="nav-item" style="font-size: 20px;">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Ingresar') }}</a>
                         </li>
                     @endif
