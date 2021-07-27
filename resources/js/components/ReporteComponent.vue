@@ -32,7 +32,7 @@ import Four from './reportes/alta.vue';
 import Five from './reportes/todos.vue';
 
     export default {
-        components: {One, Two, Three, Four},
+        components: {One, Two, Three, Four, Five},
 
         data(){
             return{

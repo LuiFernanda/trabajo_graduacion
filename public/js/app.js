@@ -5660,7 +5660,8 @@ __webpack_require__.r(__webpack_exports__);
     One: _BuscarComponent_vue__WEBPACK_IMPORTED_MODULE_0__.default,
     Two: _reportes_estado_vue__WEBPACK_IMPORTED_MODULE_1__.default,
     Three: _reportes_cuarentena_vue__WEBPACK_IMPORTED_MODULE_2__.default,
-    Four: _reportes_alta_vue__WEBPACK_IMPORTED_MODULE_3__.default
+    Four: _reportes_alta_vue__WEBPACK_IMPORTED_MODULE_3__.default,
+    Five: _reportes_todos_vue__WEBPACK_IMPORTED_MODULE_4__.default
   },
   data: function data() {
     return {
